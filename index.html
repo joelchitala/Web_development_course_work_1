@@ -11,14 +11,33 @@
 </head>
 <body>
     <section id="app">
+        <header>
+            <h1>{{sitename}}</h1>
+        </header>
+        <main>
+            <section id="main_page" v-if="showProducts">
 
+            </section>
+            <section id="cart_page" v-else>
+
+            </section>
+        </main>
     </section>
 </body>
 <script type="text/javascript">
     const app = new Vue({
         el:"#app",
+        computed:{
+            showCheckout(){
+                this.showProducts = this.showProducts ? false : true
+            }
+        },
+        methods:{
+
+        },
         data:{
-            sitename:""
+            sitename:"",
+            showProducts:true
         }
     })
 </script>
