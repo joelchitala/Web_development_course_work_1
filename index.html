@@ -15,9 +15,12 @@
         <header>
             <h1>{{sitename}}</h1>
         </header>
+        <!-- Main tag -->
         <main>
-            <section id="main_page" v-if="showProducts">
-                <section style="display: flex; flex-direction: row; width: 100%;">
+            <!-- Main page that shows all the courses from index.js-->
+            <section id="main_page" v-if="showCourses">
+                <section style="display: flex; flex-direction: row; width: 100%; height: 100%;">
+                    <!-- Filters -->
                     <section style="width: 30%;">
                         <h3>Filter & Order</h3>
                         <!-- div element to encapsulate the sorting div and order div -->
@@ -42,9 +45,10 @@
                             </div>
                         </div>
                     </section>
-                    <section style="width: 100%;">
+                    <!-- Checkout & Search -->
+                    <section style="width: 100%; height: 100%; display: flex; flex-direction: column;">
                         <div style="width: 100%; display: inline-flex; align-items: center; justify-content: flex-start;">
-                            <div style="align-self: flex-end; margin-right: 2rem;">
+                            <div style="align-self: flex-end; margin-right: 2rem; ">
                                 <button style="font-size: 1.15rem;" v-if="canRemoveFromCart" v-on:click="showCheckout">
                                     {{cartItemCount}}
                                     <i class="bx bx-cart"></i>
@@ -74,7 +78,6 @@
                                     <button v-if="item.spaces > 0" v-on:click="add_to_cart(item)">Add To Cart</button>
                                     <button v-else disabled>Add To Cart</button>
                                 </div>
-                                <!-- <button v-if="cart.includes(item.id)" v-on:click="remove_from_cart(item.id)">Remove From Cart</button> -->
                             </div>
                         </div>
 
@@ -106,7 +109,9 @@
                     <h2>Cart({{cartItemCount}})</h2>
                     <div id="courses">
                         <div class="course" v-for="item in cart">
-                            <img class="image" v-bind:src="item.item.image">
+                            <figure class="image_figure">
+                                <img class="image" v-bind:src="item.item.image">
+                            </figure>
                             <div class="info_container">
                                 <p>Subject: {{item.item.subject}}</p>
                                 <p>Location: {{item.item.location}}</p>
@@ -145,6 +150,7 @@
             },
             search(){
                 this.search_func(this.searchInput)
+                console.log(this.searchInput)
                 return true
             },
             canCheckout(){
@@ -170,7 +176,7 @@
         },
         methods:{
             showCheckout(){
-                this.showProducts = this.showProducts ? false : true
+                this.showCourses = this.showCourses ? false : true
             },
             add_to_cart(item){
                 for (let i = 0; i < courses.length; i++) {
@@ -205,9 +211,9 @@
                 
             },
             search_func(query){
-                let val = this.sort_value.toLowerCase()
                 this.courses = [...courses]
-                if(val != "all" & query.trim() != ''){
+                let val = this.sort_value.toLowerCase()
+                if(val != "all" & query.trim() != '' & val != "availablity"){
                     if(val != "price"){
                         this.courses = this.courses.filter(x => x[val].toLowerCase().includes(query.toLowerCase()))
                     }else{
@@ -220,50 +226,58 @@
 
                 
                 if(query.trim() == ''){
+                
                     this.order_sort(this.sort_value)
                 }
 
             },
             order(value){
+                this.courses = [...courses]
                 this.order_value = value
                 this.order_sort(this.sort_value)
             },
             sort(value){
+                this.courses = [...courses]
                 this.sort_value = value
                 this.order_sort(value)
             },
             order_sort(criteria){
+
                 criteria = criteria.toLowerCase()
-                if(criteria != "all"){
+                if(criteria != "all" ){
                     this.searchTerm = capitalize(criteria)
                     
-                    if(this.order_value == "Ascending"){
-
-                        this.courses.sort((a,b)=>{
-                            if(a[criteria] > b[criteria]){
-                                return 1
-                            }
-                            if(b[criteria] > a[criteria]){
-                                return -1
-                            }
-                            return 0
-                        })
+                    if(criteria != "availablity"){
+                        if(this.order_value == "Ascending"){
+                            this.courses.sort((a,b)=>{
+                                if(a[criteria] > b[criteria]){
+                                    return 1
+                                }
+                                if(b[criteria] > a[criteria]){
+                                    return -1
+                                }
+                                return 0
+                            })
+                        }else{
+                            this.courses.sort((a,b)=>{
+                                if(a[criteria] > b[criteria]){
+                                    return -1
+                                }
+                            
+                                if(b[criteria] > a[criteria]){
+                                    return 1
+                                }
+                            
+                                return 0
+                            })
+                        }
                     }else{
-                        this.courses.sort((a,b)=>{
-                            if(a[criteria] > b[criteria]){
-                                return -1
-                            }
-                        
-                            if(b[criteria] > a[criteria]){
-                                return 1
-                            }
-                        
-                            return 0
-                        })
+                        this.courses = [...this.courses.filter(x => x.spaces > 0)]
                     }
                 }else{
-                    this.searchTerm = "Please choose criteria eg. subject, location, price."
+                    console.log()
                     this.courses = [...courses]
+                    this.searchTerm = "Please choose criteria eg. subject, location, price."
                 }
             }
         },
@@ -271,7 +285,7 @@
             sitename:"After School Activities Store",
             cart:[],
             courses: courses,
-            showProducts:true,
+            showCourses:true,
             searchInput:"",
             order_value:"Ascending",
             order_dict:{
@@ -283,7 +297,8 @@
                 "All":{id:1,checked:true},
                 "Subject":{id:2,checked:false},
                 "Location":{id:3,checked:false},
-                "Price":{id:4,checked:false}
+                "Price":{id:4,checked:false},
+                "Availablity":{id:5,checked:false}
             },
             user_data:{
                 name:"",
