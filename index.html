@@ -118,6 +118,38 @@
             showCheckout(){
                 this.showProducts = this.showProducts ? false : true
             },
+            add_to_cart(item){
+                for (let i = 0; i < products.length; i++) {
+                    const product= products[i]
+                    if(item.id == product.id){
+                        item.spaces--
+                    }
+                }
+                
+                const id = `${item.subject[0]}`+item.id+`${item.location[0]}`+Math.ceil(Math.random()*1000000)
+                let data = {
+                    "id": id,
+                    "item":item,
+                }
+
+                this.cart.push(data)
+            },
+            remove_from_cart(cart_item){
+                for (let i = 0; i < products.length; i++) {
+                    const item = products[i]
+                    if(item.id == cart_item.item.id){
+                        item.spaces++
+                    }
+                }
+                for(let i = 0; i < this.cart.length; i++){
+                    const item = this.cart[i]
+                    if(cart_item.id == item.id){
+                        this.cart.splice(i,1)
+                        break;
+                    }
+                }
+                
+            },
             search_func(query){
                 let val = this.sort_value.toLowerCase()
 
