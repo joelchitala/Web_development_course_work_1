@@ -27,10 +27,8 @@
             </div>
         </header>
         <!-- Main tag -->
-        <main>
             <!-- Main page that shows all the courses from index.js-->
             <section id="main_page" v-if="showCourses">
-                <section id="main_section">
                     <!-- Filters -->
                     <section id="filters">
                             <div id="sort">
@@ -51,15 +49,12 @@
                                 </div>
                             </div>
                     </section>
-                    <!-- Checkout button & Search and courses container-->
+                    <!-- Search and courses container-->
                     <section style="width: 100%; height: 100%; display: flex; flex-direction: column;">
-                        <!--  Checkout button & Search -->
-                        <div style="width: 100%; display: inline-flex; align-items: center; justify-content: flex-start;">
-                            
-                            <div id="search">
-                                <input type="text" v-bind:placeholder="searchTerm" v-if="search" v-model="searchInput" v-on>
-                                <button v-on:click="search"><i class='bx bx-search'></i></button>
-                            </div>
+                        <!-- Search -->
+                        <div id="search">
+                            <input type="text" v-bind:placeholder="searchTerm" v-if="search" v-model="searchInput" v-on>
+                            <button v-on:click="search"><i class='bx bx-search'></i></button>
                         </div>
                         <!-- Courses container -->
                         <div id="courses">
@@ -79,7 +74,6 @@
                         </div>
 
                     </section>
-                </section>
             </section>
             <!-- Cart page -->
             <section id="cart_page" v-else>
@@ -119,7 +113,6 @@
                 </div>
 
             </section>
-        </main>
     </section>
 </body>
 <script src="index.js"></script>
