@@ -96,9 +96,7 @@ main{
     border-radius: 0.5rem;
     padding: 0.5rem;
 }
-/* input:focus > #search {
-    border: 1px solid #212142;
-} */
+
 #search input{
     width: 100%;
     border-radius: 0%;
@@ -199,6 +197,9 @@ main{
     * > p, label{
         font-size: 1rem;
     }
+    #search{
+        width: 80%;
+    }
 }
 
 @media (max-width: 600px) {
@@ -207,5 +208,8 @@ main{
     }
     * > p, label{
         font-size: 0.95rem;
+    }
+    #search{
+        width: 80%;
     }
 }
