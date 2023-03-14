@@ -196,13 +196,16 @@ main{
     #courses {
       grid-template-columns: 1fr 1fr;
     }
+    * > p, label{
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 600px) {
     #courses {
       grid-template-columns: 1fr;
     }
-    * > p{
-        font-size: 1rem;
+    * > p, label{
+        font-size: 0.95rem;
     }
 }
