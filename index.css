@@ -4,9 +4,8 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-button{
+/* button{
     padding: 0.5rem;
-    /* background-color: #eee; */
     border-radius: 0.5rem;
     cursor: pointer;
     border: none;
@@ -14,10 +13,10 @@ button{
 button:hover{
     background-color: salmon;
     color: white;
-}
+} */
 input{
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
 }
 #app{
     width: 100%;
@@ -37,6 +36,35 @@ header{
 }
 #filters div{
     margin: 0 0.5rem;
+}
+
+#search{
+    width: 30%;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+/* input:focus > #search {
+    border: 1px solid #212142;
+} */
+#search input{
+    width: 100%;
+    border-radius: 0%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+#search button{
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+#search i{
+    font-size: 1.5rem;
 }
 
 #courses{
