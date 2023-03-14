@@ -45,8 +45,9 @@
                             </div>
                         </div>
                     </section>
-                    <!-- Checkout & Search -->
+                    <!-- Checkout button & Search and courses container-->
                     <section style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                        <!--  Checkout button & Search -->
                         <div style="width: 100%; display: inline-flex; align-items: center; justify-content: flex-start;">
                             <div style="align-self: flex-end; margin-right: 2rem; ">
                                 <button style="font-size: 1.15rem;" v-if="canRemoveFromCart" v-on:click="showCheckout">
@@ -64,7 +65,7 @@
                                 <button v-on:click="search"><i class='bx bx-search'></i></button>
                             </div>
                         </div>
-
+                        <!-- Courses container -->
                         <div id="courses">
                             <div class="course" v-for="item in courses">
                                 <figure class="image_figure">
@@ -82,10 +83,9 @@
                         </div>
 
                     </section>
-
-
                 </section>
             </section>
+            <!-- Cart page -->
             <section id="cart_page" v-else>
                 <div id="Checkout">
                     <h2>Checkout Page</h2>
