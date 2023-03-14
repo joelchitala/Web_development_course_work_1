@@ -212,4 +212,7 @@ main{
     #search{
         width: 80%;
     }
+    header h1{
+        font-size: 1.25rem;
+    }
 }
