@@ -16,7 +16,34 @@
         </header>
         <main>
             <section id="main_page" v-if="showProducts">
+                <section style="display: flex; flex-direction: row; width: 100%;">
+                    <section style="width: 30%;">
+                        <h3>Filter & Order</h3>
+                        <!-- div element to encapsulate the sorting div and order div -->
+                        <div id="filters" style="display:flex; flex-direction: column; align-self: flex-start; width: 100%;">
+                            <h3 style="margin: 0.5rem 0;">Filter</h3>
+                            <!-- div element to encapsulate the sorting input radios -->
+                            <div id="sort">
+                                <div v-for="(value, key) in sort_dict">
+                                    <input type="radio" name="sort" value="key" v-if="value.checked" checked v-on:click="sort(key)">
+                                    <input type="radio" name="sort" value="key" v-else v-on:click="sort(key)">
+                                    <label for="sort">{{key}}</label>
+                                </div>
+                            </div>
+                            <h3 style="margin: 0.5rem 0;">Order</h3>
+                            <!-- div element to encapsulate the order input radios -->
+                            <div id="order">
+                                <div v-for="(value, key) in order_dict">
+                                    <input type="radio" name="order" value="key" v-if="value.checked" checked v-on:click="order(key)">
+                                    <input type="radio" name="order" value="key" v-else v-on:click="order(key)">
+                                    <label for="order">{{key}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
+
+                </section>
             </section>
             <section id="cart_page" v-else>
 
@@ -36,8 +63,21 @@
 
         },
         data:{
-            sitename:"",
-            showProducts:true
+            sitename:"After School Activities Store",
+            cart:[],
+            showProducts:true,
+            order_value:"Ascending",
+            order_dict:{
+                "Ascending":{id:1,checked:true},
+                "Descending":{id:2,checked:false}
+            },
+            sort_value:"All",
+            sort_dict:{
+                "All":{id:1,checked:true},
+                "Subject":{id:2,checked:false},
+                "Location":{id:3,checked:false},
+                "Price":{id:4,checked:false}
+            },
         }
     })
 </script>
