@@ -63,7 +63,9 @@
 
                         <div id="courses">
                             <div class="course" v-for="item in courses">
-                                <img class="image" v-bind:src="item.image">
+                                <figure class="image_figure">
+                                    <img class="image" v-bind:src="item.image">
+                                </figure>
                                 <div class="info_container">
                                     <p>Subject: {{item.subject}}</p>
                                     <p>Location: {{item.location}}</p>
@@ -119,8 +121,8 @@
                 this.showProducts = this.showProducts ? false : true
             },
             add_to_cart(item){
-                for (let i = 0; i < products.length; i++) {
-                    const product= products[i]
+                for (let i = 0; i < courses.length; i++) {
+                    const product= courses[i]
                     if(item.id == product.id){
                         item.spaces--
                     }
@@ -135,8 +137,8 @@
                 this.cart.push(data)
             },
             remove_from_cart(cart_item){
-                for (let i = 0; i < products.length; i++) {
-                    const item = products[i]
+                for (let i = 0; i < courses.length; i++) {
+                    const item = courses[i]
                     if(item.id == cart_item.item.id){
                         item.spaces++
                     }
