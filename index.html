@@ -60,6 +60,21 @@
                             </div>
                         </div>
 
+                        <div id="courses">
+                            <div class="course" v-for="item in courses">
+                                <img class="image" v-bind:src="item.image">
+                                <div class="info_container">
+                                    <p>Subject: {{item.subject}}</p>
+                                    <p>Location: {{item.location}}</p>
+                                    <p>Price: ${{item.price}}</p>
+                                    <p>Spaces: {{item.spaces}}</p>
+                                    <button v-if="item.spaces > 0" v-on:click="add_to_cart(item)">Add To Cart</button>
+                                    <button v-else disabled>Add To Cart</button>
+                                </div>
+                                <!-- <button v-if="cart.includes(item.id)" v-on:click="remove_from_cart(item.id)">Remove From Cart</button> -->
+                            </div>
+                        </div>
+
                     </section>
 
 
@@ -73,6 +88,17 @@
 </body>
 <script src="index.js"></script>
 <script type="text/javascript">
+    const capitalize = (str) =>{
+        if(str != '' & typeof(str) == "string"){
+            let temp_str = str[0].toUpperCase()
+            for(let i = 1; i < str.length; i++){
+                temp_str += str[i] 
+            }
+            return temp_str
+        }
+        return null
+    }
+
     const app = new Vue({
         el:"#app",
         computed:{
@@ -97,10 +123,10 @@
                 if(val != "all" & query.trim() != ''){
 
                     if(val != "price"){
-                        this.product_copy = this.products.filter(x => x[val].toLowerCase().includes(query.toLowerCase()))
+                        this.courses = this.courses.filter(x => x[val].toLowerCase().includes(query.toLowerCase()))
                     }else{
                         if(query.match(/^[0-9]+$/) != null){
-                            this.product_copy = this.products.filter(x => (''+x[val]).includes(query))
+                            this.courses = this.courses.filter(x => (''+x[val]).includes(query))
                         }
                     }
                     this.order_sort(this.sort_value)
@@ -108,7 +134,7 @@
 
                 
                 if(query.trim() == ''){
-                    this.product_copy = [...products]
+                    this.courses = [...courses]
                     this.order_sort(this.sort_value)
                 }
 
@@ -128,7 +154,7 @@
                     
                     if(this.order_value == "Ascending"){
 
-                        this.product_copy.sort((a,b)=>{
+                        this.courses.sort((a,b)=>{
                             if(a[criteria] > b[criteria]){
                                 return 1
                             }
@@ -138,7 +164,7 @@
                             return 0
                         })
                     }else{
-                        this.product_copy.sort((a,b)=>{
+                        this.courses.sort((a,b)=>{
                             if(a[criteria] > b[criteria]){
                                 return -1
                             }
