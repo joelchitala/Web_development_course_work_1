@@ -30,31 +30,31 @@
         <main>
             <!-- Main page that shows all the courses from index.js-->
             <section id="main_page" v-if="showCourses">
-                <section style="display: flex; flex-direction: row; width: 100%; height: 100%;">
+                <section id="main_section">
                     <!-- Filters -->
-                    <section style="width: 30%; min-width: 180px;">
-                        <h3>Filter & Order</h3>
+                    <section id="filters">
+                        <!-- <h3>Filter & Order</h3> -->
                         <!-- div element to encapsulate the sorting div and order div -->
-                        <div id="filters" style="display:flex; flex-direction: column; align-self: flex-start; width: 100%;">
-                            <h3 style="margin: 0.5rem 0;">Filter</h3>
+                        <!-- <div id="filters" style="display:flex; flex-direction: rows; align-self: flex-start; width: 100%;"> -->
                             <!-- div element to encapsulate the sorting input radios -->
                             <div id="sort">
+                                <h3 style="margin: 0.5rem 0;">Filter</h3>
                                 <div v-for="(value, key) in sort_dict">
                                     <input type="radio" name="sort" value="key" v-if="value.checked" checked v-on:click="sort(key)">
                                     <input type="radio" name="sort" value="key" v-else v-on:click="sort(key)">
                                     <label for="sort">{{key}}</label>
                                 </div>
                             </div>
-                            <h3 style="margin: 0.5rem 0;">Order</h3>
                             <!-- div element to encapsulate the order input radios -->
                             <div id="order">
+                                <h3 style="margin: 0.5rem 0;">Order</h3>
                                 <div v-for="(value, key) in order_dict">
                                     <input type="radio" name="order" value="key" v-if="value.checked" checked v-on:click="order(key)">
                                     <input type="radio" name="order" value="key" v-else v-on:click="order(key)">
                                     <label for="order">{{key}}</label>
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </section>
                     <!-- Checkout button & Search and courses container-->
                     <section style="width: 100%; height: 100%; display: flex; flex-direction: column;">
