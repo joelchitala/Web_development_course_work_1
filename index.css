@@ -43,6 +43,10 @@ input{
     padding: 0.5rem;
 }
 
+label{
+    text-transform: capitalize;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 1rem;
