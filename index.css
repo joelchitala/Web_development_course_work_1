@@ -178,8 +178,21 @@ header button{
     transform: scale(1.2) rotate(5deg);
 }
 
-#Checkout{
+#checkout{
     width: 50%;
+    align-items: center;
+}
+
+#checkout .input_container{
+    width: 100%;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+#checkout .input_container input{
+    width: 80%;
+    padding: 0.25rem;
+    margin:0 0.5rem;
 }
 
 @media (max-width: 780px) {
@@ -191,6 +204,9 @@ header button{
     }
     #search{
         width: 80%;
+    }
+    #checkout{
+        width: 100%;
     }
 }
 
@@ -207,6 +223,9 @@ header button{
     }
     header h1{
         font-size: 1.25rem;
+    }
+    #checkout{
+        width: 100%;
     }
     #container{
         flex-direction: column;
