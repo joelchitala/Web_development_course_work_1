@@ -83,7 +83,7 @@
             <section id="cart_page"  class="display-flex-col width-height" v-else>
                 <h2>Cart Page</h2>
                 <div id="container" class="display-flex-row width-height">
-                    <div id="Checkout" class="display-flex-col height">
+                    <div id="Checkout" class="display-flex-col">
                         <h2>Checkout Section</h2>
                         <div class="display-flex-col">
                             <div class="input_container">
@@ -219,7 +219,7 @@
                 this.cart.push(data)
             },
             remove_from_cart(cart_item){
-                cart_item.spaces++
+                cart_item.item.spaces++
                 for(let i = 0; i < this.cart.length; i++){
                     const item = this.cart[i]
                     if(cart_item.id == item.id){
