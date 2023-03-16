@@ -211,12 +211,14 @@
                 this.showCourses = this.showCourses ? false : true
             },
             add_to_cart(item){
-                item.spaces--
-                let data = {
-                    "id": `${item.subject[0]}`+item.id+`${item.location[0]}`+Math.ceil(Math.random()*1000000),
-                    "item":item,
+                if(item.spaces > 0){
+                    item.spaces--
+                    let data = {
+                        "id": `${item.subject[0]}-`+item.id+`-${item.location[0]}-`+Math.ceil(Math.random()*1000000),
+                        "item":item,
+                    }
+                    this.cart.push(data)
                 }
-                this.cart.push(data)
             },
             remove_from_cart(cart_item){
                 cart_item.item.spaces++
