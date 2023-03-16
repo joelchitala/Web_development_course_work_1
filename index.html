@@ -94,7 +94,7 @@
                                 <label for="phone" pattern="[A-Za-z]">Phone: </label>
                                 <input type="text" v-model.trim="user_data.phone" class="width">
                             </div>
-                            <button v-if="canCheckout">Checkout</button>
+                            <button v-if="canCheckout" v-on:click="checkout_func">Checkout</button>
                         </div>
                     </div>
                     <div id="courses_container" class="display-flex-col width-height">
@@ -237,6 +237,17 @@
             sort(value){
                 this.criteria = value
             },
+            checkout_func(){
+                if(this.cart.length > 0){
+                    let total = 0
+                    this.cart.map(x=>x.item.price).forEach(x=>{
+                        total += x
+                    })
+                    alert(`Checkout completed Number of items ${this.cart.length} total amount - $${total}`)
+                }else{
+                    alert("Cart empty")
+                }
+            }
         },
         data:{
             sitename:"After School Activities Store",
