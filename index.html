@@ -130,11 +130,15 @@
                 return this.cart.length > 0
             },
             canCheckout(){
-                const letters = /^[A-Za-z]+$/;
+                const letters = /\d+$/;
                 const numbers = /^[0-9]+$/;
 
                 let valid = true
-                if(this.user_data.name.match(letters) == null){
+                if(this.user_data.name.match(letters) != null){
+                    valid = false
+                }
+
+                if(this.user_data.name == ""){
                     valid = false
                 }
 
